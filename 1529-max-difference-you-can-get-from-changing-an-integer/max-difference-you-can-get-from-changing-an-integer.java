@@ -8,11 +8,7 @@ class Solution {
             break;}
         }
         int a = Integer.parseInt(s);
-        boolean res = notsame(r);
-        if(res==false){
-            r=r.replace(r.charAt(0),'1');
-        }
-        else if(r.charAt(0)!='1') r=r.replace(r.charAt(0),'1');
+        if(r.charAt(0)!='1') r=r.replace(r.charAt(0),'1');
         else {
             for(int i = 1;i<r.length();i++){
                 if(r.charAt(i)!='1' && r.charAt(i)!='0'){
@@ -28,10 +24,5 @@ class Solution {
         return a-b;
         
     }
-    public boolean notsame(String r){
-        for(int i = 1;i<r.length();i++){
-            if(r.charAt(i)!=r.charAt(i-1)) return true;
-        }
-        return false;
-    }
+
 }
