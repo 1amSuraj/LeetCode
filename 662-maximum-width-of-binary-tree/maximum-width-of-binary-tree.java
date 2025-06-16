@@ -36,8 +36,8 @@ class Solution {
                 int bt = pair.bt;
                 if(i==0) left = bt;
                 if(i==n-1) right = bt;
-                if(node.left!=null) queue.offer(new Pair(node.left,bt*2));
-                if(node.right!=null) queue.offer(new Pair(node.right,bt*2 +1));
+                if(node.left!=null) queue.offer(new Pair(node.left,bt*2-1));
+                if(node.right!=null) queue.offer(new Pair(node.right,bt*2 ));
             }
             width = Math.max(width, right+(-left)+1);
         }
