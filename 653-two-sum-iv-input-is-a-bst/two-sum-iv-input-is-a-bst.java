@@ -20,9 +20,6 @@ public class BSTIterator{
         reverse = isReverse;
         pushAll(root);
     }
-    public boolean hasNext() {
-        return !stack.isEmpty();
-    }
     public int next(){
         TreeNode temp = stack.pop();
         if(reverse) pushAll(temp.left);
