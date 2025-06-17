@@ -43,18 +43,14 @@ class Solution {
         BSTIterator l = new BSTIterator(root,false);
         BSTIterator r = new BSTIterator(root,true);
         int i = l.next();
-        int j = r.next();
+        int j = r.next();//before()
         while( i<j){
             if(i+j==k) return true;
             else if(i+j<k) {
-                if (l.hasNext()) i = l.next();
-            else break;
-
+                i = l.next();
             }
-            
             else {
-                if (r.hasNext()) j = r.next();
-            else break;
+                j = r.next();
             }
         }
         return false;
