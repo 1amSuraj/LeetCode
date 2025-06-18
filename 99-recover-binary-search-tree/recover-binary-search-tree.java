@@ -43,7 +43,7 @@ class Solution {
             first.val = last.val;
             last.val = temp;
         }
-        else if(first!=null ){
+        else if(first!=null && middle!=null){
             int temp = first.val;
             first.val = middle.val;
             middle.val = temp;
