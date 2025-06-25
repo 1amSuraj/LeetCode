@@ -7,11 +7,10 @@ class Solution {
         } 
         Arrays.sort(position);
         double[] time = new double[n];
-        Stack<Integer> stack = new Stack<>();
+
         for(int i = 0;i<n;i++){
             int dis =target- position[i];
             time[i] = (double)dis/(double)map.get(position[i]);
-            // stack.push(time[i]);
         }
         int c = 1;
         double maxtillnow = time[n-1];
