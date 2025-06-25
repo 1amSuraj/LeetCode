@@ -19,9 +19,6 @@ class Solution {
                 c++;
                 maxtillnow = time[i-1];
             }
-            else{
-
-            }
         }
         return c;
     }
