@@ -20,24 +20,12 @@ class Solution {
         // }
         // return prev;
 
-    //     if(head==null|| head.next==null)return head;
-    //     ListNode temp=reverseList(head.next);
-    //     ListNode front=head.next;
-    //     front.next=head;
-    //     head.next=null;
-    //     System.out.print(temp.val);
-    //     return temp;
-    // }
-
-
-
      public ListNode reverseList(ListNode head) {
 
         if(head== null || head.next==null) return head;
 
         ListNode temp = reverseList(head.next);
-        ListNode front = head.next;
-        front.next = head;
+        head.next.next = head;
         head.next = null;
         return temp;
     }
