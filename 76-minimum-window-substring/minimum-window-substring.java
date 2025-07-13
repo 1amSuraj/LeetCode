@@ -27,7 +27,7 @@ class Solution {
                     l++;
                 }
             }
-        return min == Integer.MAX_VALUE ? "" : s.substring(maxL, maxR + 1);
+        return min == Integer.MAX_VALUE? "" : s.substring(maxL, maxR + 1);
         
     }
     public static boolean hasSufficientFrequency(Map<Character, Integer> map1, Map<Character, Integer> map2) {
