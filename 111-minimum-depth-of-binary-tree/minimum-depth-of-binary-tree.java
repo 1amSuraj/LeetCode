@@ -17,8 +17,8 @@ class Solution {
     public int minDepth(TreeNode root) {
         if(root==null) return 0;
         return dfs(root,1);
-
     }
+    //can be done easily with BFS
     public int dfs(TreeNode root, int depth){
         if(root==null) return Integer.MAX_VALUE;
         if(isLeaf(root)) return depth;
