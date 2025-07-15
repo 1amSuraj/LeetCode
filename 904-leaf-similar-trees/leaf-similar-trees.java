@@ -21,7 +21,7 @@ class Solution {
         leafWord(root2,sb2); 
         System.out.println(sb1.toString());
         System.out.println(sb2.toString());
-        return sb1.toString().equals(sb2.toString() )? true:false;
+        return sb1.toString().equals(sb2.toString());
     }
     public void leafWord(TreeNode root, StringBuilder sb){
         if(root == null) return;
