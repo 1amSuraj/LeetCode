@@ -10,7 +10,7 @@ class Solution {
             while(!dq.isEmpty() && nums[dq.peekLast()]<nums[i]){
                 dq.pollLast();
             }
-            dq.offer(i);
+            dq.offerLast(i);
             if(i>=k-1) arr[c++]=nums[dq.peekFirst()];
         }
         return arr;
