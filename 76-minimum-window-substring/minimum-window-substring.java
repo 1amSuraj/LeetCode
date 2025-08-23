@@ -1,32 +1,45 @@
 class Solution {
     public String minWindow(String s, String t) {
-        int freq[] = new int[128];
-        for(char ch : t.toCharArray()){
-            freq[ch]++;
+        if (s.length() < t.length()) return "";
+
+        // Frequency map for characters in t
+        int[] freq = new int[128]; // ASCII
+        for (char c : t.toCharArray()) {
+            freq[c]++;
         }
-        int left = 0;
-        int start = 0;
-        int req = t.length();
-        int minLength = Integer.MAX_VALUE;
-        for(int r = 0;r < s.length() ; r++){
-            char ch = s.charAt(r);
-            if(freq[ch]>0){
-                req--;
+
+        int left = 0, right = 0, required = t.length();
+        int minLen = Integer.MAX_VALUE;
+        int start = 0; // To store the beginning of the best window
+
+        while (right < s.length()) {
+            char r = s.charAt(right);
+
+            // If this character is part of t
+            if (freq[r] > 0) {
+                required--; // one needed char found
             }
-            freq[ch]--;
-            while(req==0){
-                if(r-left+1<minLength){
-                    minLength = r - left +1;
+            freq[r]--; // decrease freq (could go negative if extra)
+
+            // When we have a valid window
+            while (required == 0) {
+                if (right - left + 1 < minLen) {
+                    minLen = right - left + 1;
                     start = left;
                 }
+
+                // Shrink window from left
                 char l = s.charAt(left);
                 freq[l]++;
-                if(freq[l]>0){
-                    req++;
+                if (freq[l] > 0) { 
+                    // This means we removed a needed char
+                    required++;
                 }
                 left++;
             }
+            right++;
         }
-        return minLength==Integer.MAX_VALUE? "": s.substring(start,start+minLength);
+
+        return minLen == Integer.MAX_VALUE ? "" : s.substring(start, start + minLen);
     }
 }
