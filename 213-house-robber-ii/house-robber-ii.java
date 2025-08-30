@@ -1,30 +1,28 @@
-import java.util.*;
-
-class Solution {
+public class Solution {
     public int rob(int[] nums) {
         int n = nums.length;
         if (n == 1) return nums[0];
 
-        // Case 1: Rob [0...n-2]
-        int[] memo1 = new int[n];
-        Arrays.fill(memo1, -1);
-        int option1 = robHelper(nums, 0, n - 2, memo1);
+        // Case 1: exclude last house
+        Integer[] dp1 = new Integer[n];
+        int case1 = helper(n - 2, nums, 0, dp1);
 
-        // Case 2: Rob [1...n-1]
-        int[] memo2 = new int[n];
-        Arrays.fill(memo2, -1);
-        int option2 = robHelper(nums, 1, n - 1, memo2);
+        // Case 2: exclude first house
+        Integer[] dp2 = new Integer[n];
+        int case2 = helper(n - 1, nums, 1, dp2);
 
-        return Math.max(option1, option2);
+        return Math.max(case1, case2);
     }
 
-    private int robHelper(int[] nums, int i, int end, int[] memo) {
-        if (i > end) return 0;
-        if (memo[i] != -1) return memo[i];
+    public int helper(int i, int[] nums, int start, Integer[] dp) {
+        if (i < start) return 0;
+        if (i == start) return nums[i];
 
-        int pick = nums[i] + robHelper(nums, i + 2, end, memo);
-        int notPick = robHelper(nums, i + 1, end, memo);
+        if (dp[i] != null) return dp[i];
 
-        return memo[i] = Math.max(pick, notPick);
+        int notPick = helper(i - 1, nums, start, dp);
+        int pick = helper(i - 2, nums, start, dp) + nums[i];
+
+        return dp[i] = Math.max(notPick, pick);
     }
 }
