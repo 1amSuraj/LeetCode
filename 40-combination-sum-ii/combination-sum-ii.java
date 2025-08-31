@@ -19,8 +19,8 @@ class Solution {
         {
             temp.add(arr[ind]);
             backtrack(ind+1,arr,target-arr[ind],temp,result);
-            while(ind+1 < arr.length && arr[ind]==arr[ind+1]) ind++;
             temp.remove(temp.size()-1);
+            while(ind+1 < arr.length && arr[ind]==arr[ind+1]) ind++;
 
         }
         backtrack(ind+1,arr,target,temp,result);
