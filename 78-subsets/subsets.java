@@ -25,7 +25,7 @@ public class Solution {
     }
 
     private void solve(int[] nums, int idx, List<Integer> temp) {
-        if (idx == nums.length) {
+        if (idx >= nums.length) {
             result.add(new ArrayList<>(temp));
             return;
         }
