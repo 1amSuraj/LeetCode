@@ -4,7 +4,7 @@ class Solution {
         int[] arr = new int[nums.length-k+1];
         int c = 0;
         for(int i = 0;i<nums.length;i++){
-            if(!dq.isEmpty() && dq.peekFirst()==i-k){
+            if(!dq.isEmpty() && dq.peekFirst()<=i-k){
                 dq.pollFirst();
             }
             while(!dq.isEmpty() && nums[dq.peekLast()]<nums[i]){
