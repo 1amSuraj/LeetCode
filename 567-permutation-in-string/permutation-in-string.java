@@ -2,38 +2,29 @@ class Solution {
     public boolean checkInclusion(String s1, String s2) {
         if (s1.length() > s2.length()) return false;
 
-        int[] s1Count = new int[26];
-        int[] s2Count = new int[26];
+        int[] count = new int[26];
 
-        // Count frequency of s1
+        // subtract frequencies of s1
         for (char c : s1.toCharArray()) {
-            s1Count[c - 'a']++;
+            count[c - 'a']--;
         }
 
-        int window = s1.length();
+        int left = 0;
+        for (int right = 0; right < s2.length(); right++) {
+            int idx = s2.charAt(right) - 'a';
+            count[idx]++;
 
-        // First window in s2
-        for (int i = 0; i < window; i++) {
-            s2Count[s2.charAt(i) - 'a']++;
+            // if count[idx] > 0, it means s2 has extra of this char
+            while (count[idx] > 0) {
+                count[s2.charAt(left) - 'a']--;
+                left++;
+            }
+
+            // window length matches s1 → valid permutation
+            if (right - left + 1 == s1.length()) {
+                return true;
+            }
         }
-
-        if (matches(s1Count, s2Count)) return true;
-
-        // Slide the window
-        for (int i = window; i < s2.length(); i++) {
-            s2Count[s2.charAt(i) - 'a']++; // add new char
-            s2Count[s2.charAt(i - window) - 'a']--; // remove old char
-
-            if (matches(s1Count, s2Count)) return true;
-        }
-
         return false;
-    }
-
-    private boolean matches(int[] s1Count, int[] s2Count) {
-        for (int i = 0; i < 26; i++) {
-            if (s1Count[i] != s2Count[i]) return false;
-        }
-        return true;
     }
 }
